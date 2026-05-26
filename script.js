@@ -1,1 +1,0 @@
-document.getElementById('hero-content').style.backgroundImage = 'url("assets/bg-hero.jpg")';

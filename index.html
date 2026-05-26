@@ -1,36 +1,1384 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Circuitry</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Circuitry — AI-Native DevOps for B2B SaaS</title>
+<meta name="description" content="Your fractional DevOps team. Engineer-led, AI-accelerated, 70% the cost of a US hire.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0a0a0a;
+    --paper: #fafaf8;
+    --bone: #f0efe9;
+    --ash: #6b6b6b;
+    --pencil: #9a9a9a;
+    --hairline: #d4d3cd;
+    --display: 'Fraunces', Georgia, serif;
+    --body: 'Geist', -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--body);
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.55;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--ink); color: var(--paper); }
+
+  /* GRAIN OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.035;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' /%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.25rem 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(250, 250, 248, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s;
+  }
+  nav.scrolled { border-bottom-color: var(--hairline); }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.35rem;
+    letter-spacing: -0.02em;
+  }
+  .logo img {
+    height: 40px;
+    width: auto;
+  }
+  .logo-mark {
+    width: 28px;
+    height: 28px;
+  }
+  .logo-mark .node { animation: pulse 2.5s ease-in-out infinite; }
+  .logo-mark .node:nth-child(2) { animation-delay: 0.4s; }
+  .logo-mark .node:nth-child(3) { animation-delay: 0.8s; }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+  .nav-links {
+    display: flex;
+    gap: 2.25rem;
+    align-items: center;
+    font-size: 0.875rem;
+    font-weight: 400;
+  }
+  .nav-links a {
+    color: var(--ash);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--ink);
+    color: var(--paper) !important;
+    padding: 0.6rem 1.1rem;
+    border-radius: 100px;
+    font-weight: 500;
+    transition: transform 0.2s, background 0.2s;
+  }
+  .nav-cta:hover {
+    transform: translateY(-1px);
+    background: #000;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    padding: 8rem 2.5rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  .hero-content {
+    z-index: 2;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--ash);
+    margin-bottom: 1.75rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--ink);
+  }
+  h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(2.75rem, 6vw, 5.25rem);
+    line-height: 0.98;
+    letter-spacing: -0.035em;
+    margin-bottom: 2rem;
+  }
+  h1 .italic {
+    font-style: italic;
+    font-weight: 300;
+  }
+  h1 .strike {
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    color: var(--pencil);
+  }
+  .hero-sub {
+    font-size: 1.125rem;
+    color: var(--ash);
+    max-width: 32rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.6;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+  }
+  .btn-primary, .btn-secondary {
+    font-family: var(--body);
+    font-size: 0.95rem;
+    font-weight: 500;
+    padding: 0.95rem 1.75rem;
+    border-radius: 100px;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.25s;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    border: 1px solid var(--hairline);
+  }
+  .btn-secondary:hover {
+    border-color: var(--ink);
+  }
+  .arrow { transition: transform 0.25s; }
+  .btn-primary:hover .arrow { transform: translateX(3px); }
+
+  /* HERO CIRCUIT VISUAL */
+  .hero-visual {
+    position: relative;
+    height: 540px;
+    z-index: 1;
+  }
+  .circuit-svg {
+    width: 100%;
+    height: 100%;
+  }
+  .circuit-line {
+    stroke: var(--ink);
+    stroke-width: 1;
+    fill: none;
+    stroke-dasharray: 4 4;
+    animation: dash 20s linear infinite;
+  }
+  @keyframes dash {
+    to { stroke-dashoffset: -200; }
+  }
+  .circuit-node {
+    fill: var(--ink);
+  }
+  .circuit-node.pulse {
+    animation: nodePulse 3s ease-in-out infinite;
+  }
+  @keyframes nodePulse {
+    0%, 100% { r: 4; opacity: 1; }
+    50% { r: 8; opacity: 0.4; }
+  }
+  .circuit-glow {
+    fill: var(--ink);
+    opacity: 0.08;
+    animation: glow 4s ease-in-out infinite;
+  }
+  @keyframes glow {
+    0%, 100% { transform: scale(1); opacity: 0.08; }
+    50% { transform: scale(1.4); opacity: 0.02; }
+  }
+  .data-packet {
+    fill: var(--ink);
+    animation: travel 4s linear infinite;
+  }
+  @keyframes travel {
+    0% { offset-distance: 0%; }
+    100% { offset-distance: 100%; }
+  }
+
+  /* SCROLL INDICATOR */
+  .scroll-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ash);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .scroll-line {
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(var(--ink), transparent);
+    animation: scrollPulse 2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse {
+    0%, 100% { transform: scaleY(0.5); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+  }
+
+  /* METRICS BAR */
+  .metrics {
+    padding: 4rem 2.5rem;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    background: var(--bone);
+  }
+  .metrics-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .metric {
+    padding: 0 1rem;
+    border-left: 1px solid var(--hairline);
+  }
+  .metric:first-child { border-left: none; }
+  .metric-num {
+    font-family: var(--display);
+    font-size: 3.5rem;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    margin-bottom: 0.5rem;
+  }
+  .metric-label {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ash);
+  }
+
+  /* SECTION SCAFFOLDING */
+  section {
+    padding: 8rem 2.5rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .section-head {
+    margin-bottom: 4rem;
+    max-width: 50rem;
+  }
+  .section-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--ash);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--ink);
+  }
+  h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    margin-bottom: 1.5rem;
+  }
+  h2 .italic { font-style: italic; font-weight: 300; }
+  .section-sub {
+    font-size: 1.125rem;
+    color: var(--ash);
+    line-height: 1.6;
+    max-width: 38rem;
+  }
+
+  /* PROBLEM SECTION */
+  .problem {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .problem-image {
+    aspect-ratio: 4/5;
+    background-size: cover;
+    background-position: center;
+    background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=900&q=80');
+    filter: grayscale(1) contrast(1.05);
+    position: relative;
+    overflow: hidden;
+  }
+  .problem-image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(45deg, transparent 40%, rgba(0,0,0,0.15) 100%);
+  }
+  .problem-text h2 { margin-bottom: 2rem; }
+  .pain-list {
+    list-style: none;
+    margin-top: 2rem;
+  }
+  .pain-list li {
+    padding: 1.25rem 0;
+    border-top: 1px solid var(--hairline);
+    display: flex;
+    align-items: baseline;
+    gap: 1.25rem;
+    font-size: 1.0625rem;
+  }
+  .pain-list li:last-child { border-bottom: 1px solid var(--hairline); }
+  .pain-num {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--ash);
+    min-width: 24px;
+  }
+
+  /* SERVICES / TIERS */
+  .tiers-section { background: var(--paper); }
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    border: 1px solid var(--hairline);
+  }
+  .tier {
+    padding: 3rem 2.25rem;
+    border-right: 1px solid var(--hairline);
+    transition: background 0.3s;
+    position: relative;
+  }
+  .tier:last-child { border-right: none; }
+  .tier:hover { background: var(--bone); }
+  .tier.featured {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .tier.featured:hover { background: #000; }
+  .tier.featured .tier-name,
+  .tier.featured .tier-price,
+  .tier.featured ul li { color: var(--paper); }
+  .tier.featured .tier-tag {
+    background: var(--paper);
+    color: var(--ink);
+  }
+  .tier-tag {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 0.25rem 0.6rem;
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 100px;
+  }
+  .tier-name {
+    font-family: var(--display);
+    font-size: 1.75rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.5rem;
+  }
+  .tier-blurb {
+    font-size: 0.875rem;
+    color: var(--ash);
+    margin-bottom: 2rem;
+    min-height: 2.5rem;
+  }
+  .tier.featured .tier-blurb { color: var(--pencil); }
+  .tier-price {
+    font-family: var(--display);
+    font-size: 3rem;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .tier-period {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--ash);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 2rem;
+  }
+  .tier ul {
+    list-style: none;
+    margin-bottom: 2rem;
+  }
+  .tier ul li {
+    padding: 0.75rem 0;
+    border-top: 1px solid var(--hairline);
+    font-size: 0.9375rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .tier.featured ul li {
+    border-top-color: rgba(255,255,255,0.12);
+  }
+  .check {
+    flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .tier-btn {
+    width: 100%;
+    padding: 0.85rem;
+    border: 1px solid var(--ink);
+    background: transparent;
+    color: var(--ink);
+    font-family: var(--body);
+    font-weight: 500;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 100px;
+    transition: all 0.2s;
+  }
+  .tier-btn:hover {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .tier.featured .tier-btn {
+    border-color: var(--paper);
+    color: var(--paper);
+  }
+  .tier.featured .tier-btn:hover {
+    background: var(--paper);
+    color: var(--ink);
+  }
+
+  /* PROCESS */
+  .process-section { background: var(--bone); }
+  .process-section section {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .process-wrap { padding: 8rem 2.5rem; max-width: 1400px; margin: 0 auto; }
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    position: relative;
+  }
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 5%;
+    right: 5%;
+    height: 1px;
+    background: var(--hairline);
+    z-index: 0;
+  }
+  .step {
+    position: relative;
+    z-index: 1;
+    padding-right: 2rem;
+  }
+  .step-num {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 1px solid var(--ink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--display);
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s;
+  }
+  .step:hover .step-num {
+    background: var(--ink);
+    color: var(--paper);
+    transform: scale(1.05);
+  }
+  .step h3 {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 1.35rem;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.01em;
+  }
+  .step p {
+    font-size: 0.95rem;
+    color: var(--ash);
+    line-height: 1.55;
+  }
+
+  /* DIFFERENTIATOR */
+  .diff {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .diff-visual {
+    position: relative;
+    aspect-ratio: 1;
+    background: var(--bone);
+    overflow: hidden;
+  }
+  .diff-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&q=80');
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(1) contrast(1.1) brightness(1.05);
+    opacity: 0.95;
+  }
+  .diff-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 2.5rem;
+    background: linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.55) 100%);
+    color: var(--paper);
+  }
+  .diff-stat {
+    font-family: var(--display);
+    font-size: 4rem;
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+  .diff-stat-label {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-top: 0.5rem;
+    opacity: 0.85;
+  }
+  .diff-points {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .diff-point {
+    padding-left: 1.5rem;
+    border-left: 1px solid var(--hairline);
+  }
+  .diff-point h3 {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+  .diff-point p {
+    color: var(--ash);
+    font-size: 1rem;
+  }
+
+  /* STACK MARQUEE */
+  .stack {
+    padding: 4rem 0;
+    overflow: hidden;
+    background: var(--ink);
+    color: var(--paper);
+    border-top: 1px solid var(--ink);
+    border-bottom: 1px solid var(--ink);
+  }
+  .stack-label {
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--pencil);
+    margin-bottom: 2.5rem;
+  }
+  .marquee {
+    display: flex;
+    gap: 4rem;
+    animation: scroll 30s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee span {
+    font-family: var(--display);
+    font-size: 2.5rem;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  .marquee span.italic { font-style: italic; opacity: 0.4; }
+  @keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* TESTIMONIALS */
+  .reviews-section { background: var(--paper); }
+  .reviews {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .review {
+    padding: 2.5rem;
+    border: 1px solid var(--hairline);
+    background: var(--paper);
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 380px;
+  }
+  .review:hover {
+    background: var(--bone);
+    transform: translateY(-2px);
+  }
+  .stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 1.5rem;
+  }
+  .quote {
+    font-family: var(--display);
+    font-size: 1.25rem;
+    line-height: 1.45;
+    letter-spacing: -0.01em;
+    margin-bottom: 2rem;
+    font-weight: 400;
+  }
+  .reviewer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--hairline);
+  }
+  .avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    filter: grayscale(1);
+    flex-shrink: 0;
+  }
+  .reviewer-info {
+    line-height: 1.3;
+  }
+  .reviewer-name {
+    font-weight: 500;
+    font-size: 0.9375rem;
+  }
+  .reviewer-title {
+    font-size: 0.8125rem;
+    color: var(--ash);
+    font-family: var(--mono);
+  }
+
+  /* CTA */
+  .cta-section {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 8rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-bg-svg {
+    position: absolute;
+    inset: 0;
+    opacity: 0.08;
+    pointer-events: none;
+  }
+  .cta-content {
+    max-width: 48rem;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-content .section-eyebrow {
+    color: var(--pencil);
+    justify-content: center;
+  }
+  .cta-content .section-eyebrow::before {
+    background: var(--paper);
+  }
+  .cta-content h2 {
+    color: var(--paper);
+    margin-bottom: 1.5rem;
+  }
+  .cta-content p {
+    color: var(--pencil);
+    font-size: 1.125rem;
+    margin-bottom: 3rem;
+    line-height: 1.6;
+  }
+  .cta-content .btn-primary {
+    background: var(--paper);
+    color: var(--ink);
+  }
+  .cta-content .btn-primary:hover {
+    background: #fff;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 4rem 2.5rem 2rem;
+    border-top: 1px solid var(--hairline);
+    background: var(--paper);
+  }
+  .footer-wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+  .footer-brand {
+    max-width: 18rem;
+  }
+  .footer-brand .logo { margin-bottom: 1rem; }
+  .footer-brand p {
+    color: var(--ash);
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+  .footer-col h4 {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--ash);
+    margin-bottom: 1.25rem;
+    font-weight: 500;
+  }
+  .footer-col a {
+    display: block;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    padding: 0.4rem 0;
+    transition: opacity 0.2s;
+  }
+  .footer-col a:hover { opacity: 0.6; }
+  .footer-bottom {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid var(--hairline);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--ash);
+  }
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--ink);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  /* REVEAL ANIMATIONS */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.8s cubic-bezier(0.2, 0.6, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.6, 0.2, 1);
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal.delay-1 { transition-delay: 0.1s; }
+  .reveal.delay-2 { transition-delay: 0.2s; }
+  .reveal.delay-3 { transition-delay: 0.3s; }
+  .reveal.delay-4 { transition-delay: 0.4s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; padding-top: 7rem; }
+    .hero-visual { height: 360px; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); gap: 2.5rem; }
+    .metric { border-left: none; }
+    .problem, .diff { grid-template-columns: 1fr; gap: 3rem; }
+    .tiers { grid-template-columns: 1fr; }
+    .tier { border-right: none; border-bottom: 1px solid var(--hairline); }
+    .tier:last-child { border-bottom: none; }
+    .steps { grid-template-columns: 1fr; gap: 2.5rem; }
+    .steps::before { display: none; }
+    .reviews { grid-template-columns: 1fr; }
+    .footer-wrap { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .nav-links .nav-cta { display: inline-block; }
+    .nav-links { display: flex; }
+    .nav-links a:not(.nav-cta) { display: none; }
+    section { padding: 5rem 1.5rem; }
+    nav { padding: 1rem 1.5rem; }
+    .footer-bottom { flex-direction: column; gap: 1rem; }
+  }
+</style>
 </head>
 <body>
-    <main class="p-container">
-        <div class="p-navbar">
-            <a href="/" class="n-home" id="home">
-                <img src="assets/logo_flat.png" alt="logo" class="n-logo">
-            </a>
-            <nav class="n-group lora-400">
-                <a href="#about" class="n-link">Who we are</a>
-                <a href="#services" class="n-link">What we do</a>
-                <a href="#contact" class="n-link">Contact Us</a>
-            </nav>
-            <div class="n-buttons">
-                <button class="n-btn playfair-display-400" id="start">Get Started</button>
-                <button class="n-btn playfair-display-400" id="learn-more">Learn More</button>
-            </div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo">
+    <img src="assets/logo_flat.png" alt="">
+  </a>
+  <div class="nav-links">
+    <a href="#services">Services</a>
+    <a href="#process">How it works</a>
+    <a href="#reviews">Clients</a>
+    <a href="#contact" class="nav-cta">Free Cloud Audit</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-content">
+    <div class="eyebrow reveal">AI-Native DevOps · For B2B SaaS</div>
+    <h1 class="reveal delay-1">
+      Your fractional<br>
+      <span class="italic">DevOps team,</span><br>
+      <span class="strike">in-house.</span> remote.
+    </h1>
+    <p class="hero-sub reveal delay-2">
+      Engineer-led, AI-accelerated infrastructure operations for SaaS companies between seed and Series B. 70% the cost of a US hire. Zero ramp time. On-call from day one.
+    </p>
+    <div class="hero-cta reveal delay-3">
+      <a href="#contact" class="btn-primary">
+        Free Cloud Audit
+        <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10m0 0L8 3m5 5l-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <a href="#services" class="btn-secondary">View Plans</a>
+    </div>
+  </div>
+  <div class="hero-visual reveal delay-2">
+    <svg class="circuit-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer circuit traces -->
+      <path class="circuit-line" d="M 50 100 L 200 100 L 200 50 L 350 50"/>
+      <path class="circuit-line" d="M 50 200 L 150 200 L 150 250 L 50 250"/>
+      <path class="circuit-line" d="M 450 100 L 350 100 L 350 150 L 450 150"/>
+      <path class="circuit-line" d="M 450 400 L 300 400 L 300 450 L 100 450"/>
+      <path class="circuit-line" d="M 50 350 L 200 350 L 200 400 L 50 400"/>
+      <path class="circuit-line" d="M 450 250 L 350 250 L 350 300 L 450 300"/>
+
+      <!-- Inner connections to center -->
+      <path class="circuit-line" d="M 200 100 L 250 175"/>
+      <path class="circuit-line" d="M 350 100 L 290 175"/>
+      <path class="circuit-line" d="M 200 350 L 250 290"/>
+      <path class="circuit-line" d="M 350 300 L 290 280"/>
+      <path class="circuit-line" d="M 150 250 L 220 240"/>
+      <path class="circuit-line" d="M 350 250 L 290 240"/>
+
+      <!-- Central glow -->
+      <circle class="circuit-glow" cx="250" cy="240" r="60"/>
+      <circle class="circuit-glow" cx="250" cy="240" r="35" style="animation-delay: 1s;"/>
+
+      <!-- Central hub -->
+      <rect x="220" y="210" width="60" height="60" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+      <rect x="232" y="222" width="36" height="36" fill="#0a0a0a"/>
+      <text x="250" y="246" text-anchor="middle" fill="#fafaf8" font-family="JetBrains Mono" font-size="9" font-weight="500">DC</text>
+
+      <!-- Nodes -->
+      <circle class="circuit-node pulse" cx="50" cy="100" r="4"/>
+      <circle class="circuit-node pulse" cx="350" cy="50" r="4" style="animation-delay: 0.5s;"/>
+      <circle class="circuit-node pulse" cx="450" cy="150" r="4" style="animation-delay: 1s;"/>
+      <circle class="circuit-node pulse" cx="50" cy="250" r="4" style="animation-delay: 1.5s;"/>
+      <circle class="circuit-node pulse" cx="50" cy="400" r="4" style="animation-delay: 2s;"/>
+      <circle class="circuit-node pulse" cx="450" cy="300" r="4" style="animation-delay: 0.8s;"/>
+      <circle class="circuit-node pulse" cx="100" cy="450" r="4" style="animation-delay: 1.2s;"/>
+      <circle class="circuit-node pulse" cx="450" cy="400" r="4" style="animation-delay: 1.8s;"/>
+
+      <!-- Static smaller nodes -->
+      <circle class="circuit-node" cx="200" cy="100" r="2"/>
+      <circle class="circuit-node" cx="200" cy="50" r="2"/>
+      <circle class="circuit-node" cx="350" cy="100" r="2"/>
+      <circle class="circuit-node" cx="150" cy="200" r="2"/>
+      <circle class="circuit-node" cx="150" cy="250" r="2"/>
+      <circle class="circuit-node" cx="350" cy="150" r="2"/>
+      <circle class="circuit-node" cx="350" cy="250" r="2"/>
+      <circle class="circuit-node" cx="350" cy="300" r="2"/>
+      <circle class="circuit-node" cx="200" cy="350" r="2"/>
+      <circle class="circuit-node" cx="200" cy="400" r="2"/>
+      <circle class="circuit-node" cx="300" cy="400" r="2"/>
+      <circle class="circuit-node" cx="300" cy="450" r="2"/>
+
+      <!-- Labels -->
+      <text x="35" y="92" font-family="JetBrains Mono" font-size="7" fill="#6b6b6b">AWS</text>
+      <text x="360" y="42" font-family="JetBrains Mono" font-size="7" fill="#6b6b6b">K8s</text>
+      <text x="460" y="142" font-family="JetBrains Mono" font-size="7" fill="#6b6b6b">CI/CD</text>
+      <text x="35" y="242" font-family="JetBrains Mono" font-size="7" fill="#6b6b6b">CDN</text>
+      <text x="35" y="392" font-family="JetBrains Mono" font-size="7" fill="#6b6b6b">RDS</text>
+      <text x="460" y="292" font-family="JetBrains Mono" font-size="7" fill="#6b6b6b">IAM</text>
+      <text x="80" y="465" font-family="JetBrains Mono" font-size="7" fill="#6b6b6b">LAMBDA</text>
+      <text x="455" y="392" font-family="JetBrains Mono" font-size="7" fill="#6b6b6b">MONITORING</text>
+    </svg>
+  </div>
+
+  <div class="scroll-hint">
+    Scroll
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<!-- METRICS -->
+<div class="metrics">
+  <div class="metrics-grid">
+    <div class="metric reveal">
+      <div class="metric-num" data-count="34">0%</div>
+      <div class="metric-label">Avg. Cloud Cost Reduction</div>
+    </div>
+    <div class="metric reveal delay-1">
+      <div class="metric-num" data-count="99.97">0%</div>
+      <div class="metric-label">Uptime Across Clients</div>
+    </div>
+    <div class="metric reveal delay-2">
+      <div class="metric-num" data-count="12">0</div>
+      <div class="metric-label">Min. Median Response Time</div>
+    </div>
+    <div class="metric reveal delay-3">
+      <div class="metric-num" data-count="70">0%</div>
+      <div class="metric-label">Less Than A US Hire</div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="problem">
+    <div class="problem-image reveal"></div>
+    <div class="problem-text">
+      <div class="section-eyebrow reveal">The Problem</div>
+      <h2 class="reveal delay-1">Too big to ignore infrastructure. Too <span class="italic">small</span> to justify a senior hire.</h2>
+      <p class="section-sub reveal delay-2">
+        Every growing SaaS company hits the same wall. Your engineers are building product, not babysitting Kubernetes. Your AWS bill creeps up every month. PagerDuty wakes someone at 3 AM. Hiring a senior DevOps engineer in the US costs $180,000+ and takes six months.
+      </p>
+      <ul class="pain-list">
+        <li class="reveal delay-3"><span class="pain-num">01</span> Cloud costs growing faster than revenue</li>
+        <li class="reveal delay-3"><span class="pain-num">02</span> CI/CD pipelines breaking at the worst moments</li>
+        <li class="reveal delay-3"><span class="pain-num">03</span> No structured on-call coverage outside US hours</li>
+        <li class="reveal delay-3"><span class="pain-num">04</span> SOC2 deadlines you keep pushing back</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES / TIERS -->
+<div class="tiers-section">
+  <section id="services">
+    <div class="section-head">
+      <div class="section-eyebrow reveal">Engagement Tiers</div>
+      <h2 class="reveal delay-1">Three ways to plug us <span class="italic">into</span> your stack.</h2>
+      <p class="section-sub reveal delay-2">Month-to-month engagements. No long contracts. Cancel anytime.</p>
+    </div>
+    <div class="tiers reveal delay-2">
+      <div class="tier">
+        <div class="tier-name">Foundation</div>
+        <div class="tier-blurb">For pre-seed and seed teams with no dedicated DevOps</div>
+        <div class="tier-price">$3,000</div>
+        <div class="tier-period">USD / month</div>
+        <ul>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 14 14"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg> 40 engineering hours / month</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 14 14"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg> Cloud cost audit & optimization</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 14 14"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg> Monitoring & alerting setup</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 14 14"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg> Business-hours Slack support</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 14 14"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg> Monthly health report</li>
+        </ul>
+        <button class="tier-btn">Start with Foundation</button>
+      </div>
+      <div class="tier featured">
+        <span class="tier-tag">Most Popular</span>
+        <div class="tier-name">Scale</div>
+        <div class="tier-blurb">For Series A teams with growing infrastructure complexity</div>
+        <div class="tier-price">$6,000</div>
+        <div class="tier-period">USD / month</div>
+        <ul>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 14 14"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg> 80 engineering hours / month</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 14 14"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg> Dedicated engineer + lead oversight</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 14 14"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg> Full CI/CD ownership</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 14 14"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg> 16/5 on-call coverage</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 14 14"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg> Monthly architecture reviews</li>
+        </ul>
+        <button class="tier-btn">Choose Scale</button>
+      </div>
+      <div class="tier">
+        <div class="tier-name">Mission-Critical</div>
+        <div class="tier-blurb">For SaaS where uptime equals revenue</div>
+        <div class="tier-price">$10,000<span style="font-size: 1.5rem;">+</span></div>
+        <div class="tier-period">USD / month</div>
+        <ul>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 14 14"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg> Full team (lead + engineer + backup)</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 14 14"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg> 24/7 on-call with SLAs</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 14 14"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg> Incident response & postmortems</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 14 14"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg> SOC2 & compliance support</li>
+          <li><svg class="check" width="14" height="14" viewBox="0 0 14 14"><path d="M2 7l3 3 7-7" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg> Quarterly executive briefings</li>
+        </ul>
+        <button class="tier-btn">Talk to us</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- PROCESS -->
+<div class="process-section">
+  <div class="process-wrap">
+    <div class="section-head">
+      <div class="section-eyebrow reveal">How It Works</div>
+      <h2 class="reveal delay-1">From audit to <span class="italic">always-on</span> in fourteen days.</h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h3>Audit</h3>
+        <p>Free 60-minute cloud audit. We pull your AWS bill and infra config, then deliver a written report with quantified savings and risk areas.</p>
+      </div>
+      <div class="step reveal delay-1">
+        <div class="step-num">02</div>
+        <h3>Onboard</h3>
+        <p>Signed in week one. Your dedicated engineer joins your Slack, gets read access to your stack, and ships your first wins within seven days.</p>
+      </div>
+      <div class="step reveal delay-2">
+        <div class="step-num">03</div>
+        <h3>Operate</h3>
+        <p>Daily standups async, weekly syncs live. Cloud costs trimmed, monitoring sharpened, on-call rotations in place. Our AI tooling does the boring parts.</p>
+      </div>
+      <div class="step reveal delay-3">
+        <div class="step-num">04</div>
+        <h3>Compound</h3>
+        <p>Every month our team knows your stack better. SOPs harden, response times shrink, your infrastructure becomes an asset rather than a liability.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DIFFERENTIATOR -->
+<section id="differentiator">
+  <div class="diff">
+    <div class="diff-visual reveal">
+      <div class="diff-bg"></div>
+      <div class="diff-overlay">
+        <div>
+          <div class="diff-stat">2.4×</div>
+          <div class="diff-stat-label">Output per engineer vs. traditional BPO</div>
         </div>
-        <div class="p-hero">
-            <div class="c-hero" id="hero-content">
-                <h1 class="playfair-display-400">Your business, simplified.</h1>
-                <span class="lora-400">
-                    Simplify your operations. Streamline your processes. Transform your business.
-                </span>
-            </div>
+      </div>
+    </div>
+    <div>
+      <div class="section-eyebrow reveal">Why Digital Circuitry</div>
+      <h2 class="reveal delay-1">Other BPOs sell <span class="italic">hours.</span> We sell <span class="italic">outcomes.</span></h2>
+      <p class="section-sub reveal delay-2">
+        We're a small team of senior engineers backed by internal AI tooling we built ourselves: cloud cost analyzers, IaC generators, log triage agents, runbook autodrafters. Our engineers spend their hours on judgment work — yours.
+      </p>
+      <div class="diff-points">
+        <div class="diff-point reveal delay-3">
+          <h3>Engineer-led, not ticket-driven</h3>
+          <p>Your engineer is named, knows your stack, and stays on your account. No round-robin queues.</p>
         </div>
-    </main>
-    <script src="script.js"></script>
+        <div class="diff-point reveal delay-3">
+          <h3>AI as a margin lever, not a product</h3>
+          <p>Our internal tooling lets one of our engineers handle the workload of two. You feel it in price.</p>
+        </div>
+        <div class="diff-point reveal delay-4">
+          <h3>Built for B2B SaaS specifically</h3>
+          <p>No generalist BPO awkwardness. We know AWS, K8s, Stripe, Datadog, and the rhythms of a venture-backed roadmap.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK MARQUEE -->
+<div class="stack">
+  <div class="stack-label">Stacks we operate</div>
+  <div class="marquee">
+    <span>AWS</span><span class="italic">·</span>
+    <span>Kubernetes</span><span class="italic">·</span>
+    <span>Terraform</span><span class="italic">·</span>
+    <span>Datadog</span><span class="italic">·</span>
+    <span>GitHub Actions</span><span class="italic">·</span>
+    <span>Postgres</span><span class="italic">·</span>
+    <span>Redis</span><span class="italic">·</span>
+    <span>Cloudflare</span><span class="italic">·</span>
+    <span>AWS</span><span class="italic">·</span>
+    <span>Kubernetes</span><span class="italic">·</span>
+    <span>Terraform</span><span class="italic">·</span>
+    <span>Datadog</span><span class="italic">·</span>
+    <span>GitHub Actions</span><span class="italic">·</span>
+    <span>Postgres</span><span class="italic">·</span>
+    <span>Redis</span><span class="italic">·</span>
+    <span>Cloudflare</span><span class="italic">·</span>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="reviews-section">
+  <section id="reviews">
+    <div class="section-head">
+      <div class="section-eyebrow reveal">Client Stories</div>
+      <h2 class="reveal delay-1">What founders <span class="italic">say.</span></h2>
+      <p class="section-sub reveal delay-2" style="font-family: var(--mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--pencil);">
+        [Placeholder reviews — replace with real testimonials post-launch]
+      </p>
+    </div>
+    <div class="reviews">
+      <div class="review reveal">
+        <div>
+          <div class="stars">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="#0a0a0a"><polygon points="7,1 9,5 13,5 10,8 11,12 7,10 3,12 4,8 1,5 5,5"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="#0a0a0a"><polygon points="7,1 9,5 13,5 10,8 11,12 7,10 3,12 4,8 1,5 5,5"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="#0a0a0a"><polygon points="7,1 9,5 13,5 10,8 11,12 7,10 3,12 4,8 1,5 5,5"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="#0a0a0a"><polygon points="7,1 9,5 13,5 10,8 11,12 7,10 3,12 4,8 1,5 5,5"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="#0a0a0a"><polygon points="7,1 9,5 13,5 10,8 11,12 7,10 3,12 4,8 1,5 5,5"/></svg>
+          </div>
+          <p class="quote">"They cut our AWS bill by 38% in the first month. Our last DevOps hire took five months to start contributing. Digital Circuitry was shipping by week two."</p>
+        </div>
+        <div class="reviewer">
+          <div class="avatar" style="background-image: url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80');"></div>
+          <div class="reviewer-info">
+            <div class="reviewer-name">Sarah Chen</div>
+            <div class="reviewer-title">CTO, Levermark Analytics</div>
+          </div>
+        </div>
+      </div>
+      <div class="review reveal delay-1">
+        <div>
+          <div class="stars">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="#0a0a0a"><polygon points="7,1 9,5 13,5 10,8 11,12 7,10 3,12 4,8 1,5 5,5"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="#0a0a0a"><polygon points="7,1 9,5 13,5 10,8 11,12 7,10 3,12 4,8 1,5 5,5"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="#0a0a0a"><polygon points="7,1 9,5 13,5 10,8 11,12 7,10 3,12 4,8 1,5 5,5"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="#0a0a0a"><polygon points="7,1 9,5 13,5 10,8 11,12 7,10 3,12 4,8 1,5 5,5"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="#0a0a0a"><polygon points="7,1 9,5 13,5 10,8 11,12 7,10 3,12 4,8 1,5 5,5"/></svg>
+          </div>
+          <p class="quote">"Before them I was getting PagerDuty alerts at 2 AM weekly. I've slept through the night for three months. Worth every dollar."</p>
+        </div>
+        <div class="reviewer">
+          <div class="avatar" style="background-image: url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=80');"></div>
+          <div class="reviewer-info">
+            <div class="reviewer-name">Marcus Halloway</div>
+            <div class="reviewer-title">Founder, Threadline (Series A)</div>
+          </div>
+        </div>
+      </div>
+      <div class="review reveal delay-2">
+        <div>
+          <div class="stars">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="#0a0a0a"><polygon points="7,1 9,5 13,5 10,8 11,12 7,10 3,12 4,8 1,5 5,5"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="#0a0a0a"><polygon points="7,1 9,5 13,5 10,8 11,12 7,10 3,12 4,8 1,5 5,5"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="#0a0a0a"><polygon points="7,1 9,5 13,5 10,8 11,12 7,10 3,12 4,8 1,5 5,5"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="#0a0a0a"><polygon points="7,1 9,5 13,5 10,8 11,12 7,10 3,12 4,8 1,5 5,5"/></svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="#0a0a0a"><polygon points="7,1 9,5 13,5 10,8 11,12 7,10 3,12 4,8 1,5 5,5"/></svg>
+          </div>
+          <p class="quote">"Their cloud audit found $4,200/month of waste we didn't know we had. The audit was free. The engagement paid for itself in week one."</p>
+        </div>
+        <div class="reviewer">
+          <div class="avatar" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=80');"></div>
+          <div class="reviewer-info">
+            <div class="reviewer-name">Priya Nair</div>
+            <div class="reviewer-title">VP Eng, Cartograph.io</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CTA -->
+<div class="cta-section">
+  <svg class="cta-bg-svg" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#fafaf8" stroke-width="0.5"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#grid)"/>
+  </svg>
+  <div class="cta-content">
+    <div class="section-eyebrow reveal">Start with an Audit</div>
+    <h2 class="reveal delay-1">A free cloud audit. <span class="italic">No commitment.</span></h2>
+    <p class="reveal delay-2">In 60 minutes we'll pull your AWS bill apart, identify waste, flag risks, and send you a written report. Whether or not you hire us — you keep the report.</p>
+    <a href="mailto:hello@circuitry.digital" class="btn-primary reveal delay-3">
+      Request Your Free Audit
+      <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10m0 0L8 3m5 5l-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-wrap">
+    <div class="footer-brand">
+      <a href="#" class="logo">
+        <svg class="logo-mark" viewBox="0 0 28 28" fill="none">
+          <line x1="4" y1="14" x2="10" y2="14" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="18" y1="14" x2="24" y2="14" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="14" y1="4" x2="14" y2="10" stroke="currentColor" stroke-width="1.2"/>
+          <line x1="14" y1="18" x2="14" y2="24" stroke="currentColor" stroke-width="1.2"/>
+          <circle class="node" cx="4" cy="14" r="2" fill="currentColor"/>
+          <circle class="node" cx="24" cy="14" r="2" fill="currentColor"/>
+          <circle class="node" cx="14" cy="4" r="2" fill="currentColor"/>
+          <circle class="node" cx="14" cy="24" r="2" fill="currentColor"/>
+          <circle cx="14" cy="14" r="4" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          <circle cx="14" cy="14" r="1.5" fill="currentColor"/>
+        </svg>
+        Digital Circuitry
+      </a>
+      <p>AI-native DevOps for B2B SaaS companies. Engineer-led, AI-accelerated, built remote-first from the Philippines.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="#services">Foundation</a>
+      <a href="#services">Scale</a>
+      <a href="#services">Mission-Critical</a>
+      <a href="#services">SOC2 Prep</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About</a>
+      <a href="#">Process</a>
+      <a href="#">Case Studies</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:hello@circuitry.digital">hello@circuitry.digital</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">GitHub</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div>© 2026 Digital Circuitry. All systems operational.</div>
+    <div class="status">
+      <span class="status-dot"></span>
+      ALL SYSTEMS NORMAL
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 24) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => obs.observe(el));
+
+  // Number counter
+  const counters = document.querySelectorAll('.metric-num');
+  const counterObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !e.target.dataset.done) {
+        e.target.dataset.done = 'true';
+        const target = parseFloat(e.target.dataset.count);
+        const suffix = e.target.textContent.includes('%') ? '%' : '';
+        let cur = 0;
+        const step = target / 60;
+        const tick = setInterval(() => {
+          cur += step;
+          if (cur >= target) {
+            cur = target;
+            clearInterval(tick);
+          }
+          e.target.textContent = (target % 1 === 0 ? Math.floor(cur) : cur.toFixed(2)) + suffix;
+        }, 20);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterObs.observe(c));
+</script>
+
 </body>
 </html>
