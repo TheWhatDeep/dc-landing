@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Digital Circuitry</title>
+<meta name="description" content="Learn about Digital Circuitry — a Filipino workers' cooperative reimagining how VAs and clients work together.">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* About-specific styles */
+  .page-hero {
+    width: var(--container);
+    margin: 0 auto;
+    padding: 5rem 0 4rem;
+    max-width: 880px;
+  }
+  .page-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 350;
+    margin: 1.5rem 0 1.5rem;
+    font-variation-settings: "opsz" 144, "SOFT" 80;
+  }
+  .page-hero h1 em {
+    font-style: italic;
+    color: var(--blue-deep);
+  }
+  .page-hero .lead {
+    font-size: 1.25rem;
+    color: var(--charcoal-soft);
+    line-height: 1.6;
+    max-width: 680px;
+  }
+
+  /* Story section */
+  .story-section {
+    width: var(--container);
+    margin: 0 auto;
+    padding: 5rem 0;
+    max-width: 760px;
+  }
+  .story-section p {
+    font-size: 1.0625rem;
+    line-height: 1.8;
+    color: var(--charcoal);
+    margin-bottom: 1.5rem;
+  }
+  .story-section p:first-of-type::first-letter {
+    font-family: var(--font-display);
+    font-size: 4.5rem;
+    float: left;
+    line-height: 0.8;
+    padding: 0.5rem 0.75rem 0 0;
+    color: var(--blue-deep);
+    font-weight: 300;
+    font-style: italic;
+  }
+  .pull-quote {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--blue-ink);
+    line-height: 1.4;
+    font-weight: 400;
+    font-style: italic;
+    padding: 2rem 0;
+    margin: 2rem 0;
+    border-top: 1px solid var(--blue-soft);
+    border-bottom: 1px solid var(--blue-soft);
+    font-variation-settings: "opsz" 144, "SOFT" 80;
+  }
+
+  /* Values grid */
+  .values-section {
+    background: var(--cream-deep);
+    width: 100%;
+    padding: 6rem 0;
+  }
+  .values-inner {
+    width: var(--container);
+    margin: 0 auto;
+  }
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .value-card {
+    background: var(--cream);
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    border: 1px solid var(--whisper);
+    transition: all 0.3s ease;
+  }
+  .value-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -16px rgba(26, 58, 82, 0.12);
+  }
+  .value-num {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    color: var(--sand-deep);
+    margin-bottom: 1.5rem;
+  }
+  .value-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+  .value-card p {
+    color: var(--charcoal-soft);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Legal block */
+  .legal-block {
+    width: var(--container);
+    margin: 6rem auto;
+    max-width: 880px;
+    padding: 3rem;
+    background: var(--cream-deep);
+    border-radius: 24px;
+    border: 1px solid var(--whisper);
+    position: relative;
+  }
+  .legal-block::before {
+    content: '§';
+    position: absolute;
+    top: -1rem;
+    left: 2rem;
+    background: var(--cream);
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--blue-deep);
+    border: 1px solid var(--whisper);
+  }
+  .legal-block h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+  .legal-block p {
+    color: var(--charcoal-soft);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+  .legal-block p:last-child { margin-bottom: 0; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 36 36" fill="none">
+        <circle cx="18" cy="18" r="17" stroke="#2C5F7E" stroke-width="1"/>
+        <circle cx="18" cy="18" r="3" fill="#2C5F7E"/>
+        <circle cx="6" cy="12" r="2" fill="#D4A574"/>
+        <circle cx="30" cy="12" r="2" fill="#D4A574"/>
+        <circle cx="6" cy="24" r="2" fill="#D4A574"/>
+        <circle cx="30" cy="24" r="2" fill="#D4A574"/>
+        <path d="M8 12 L15 18 M28 12 L21 18 M8 24 L15 18 M28 24 L21 18" stroke="#6A8EAA" stroke-width="0.8"/>
+      </svg>
+      <div class="logo-text">
+        <span class="logo-name">Digital Circuitry</span>
+        <span class="logo-tag">A VA Collective</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="join.html">Join</a></li>
+      <li><a href="hire.html">Hire</a></li>
+      <li><a href="contact.html" class="nav-cta">Get in touch</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+<section class="page-hero">
+  <span class="eyebrow">About us</span>
+  <h1>A different way to <em>work, together</em>.</h1>
+  <p class="lead">Digital Circuitry was built on a simple idea: the people doing the work should also own the work. We are a Workers' Cooperative under Philippine law, designed for the realities of remote work in 2026.</p>
+</section>
+
+<section class="story-section">
+  <p>Most Filipino Virtual Assistants exist in a precarious in-between space — too informal to access SSS, PhilHealth, Pag-IBIG, or HMO coverage, but too professional to be treated like hobbyists. They build careers, support families, and contribute meaningfully to businesses worldwide — yet they often do so without the basic protections every worker deserves.</p>
+
+  <p>We started Digital Circuitry to change that. Not by being another agency that takes a cut and moves on — but by building a true cooperative where the VAs themselves are the owners. Every member has a vote in how the cooperative is run. Every member receives full government-mandated benefits and HMO coverage. Every member shares in the surplus when the cooperative thrives.</p>
+
+  <p class="pull-quote">"The cooperative model has existed in the Philippines since 1990 under RA 6938, refined in 2008 under RA 9520. What's new is applying it to remote knowledge work."</p>
+
+  <p>This isn't a startup pitch or a tech disruption story. This is a centuries-old idea — that workers can own the means of their own labor — applied to the most modern form of work there is.</p>
+
+  <p>Our name, <strong>Digital Circuitry</strong>, reflects what we believe: that the digital world runs on real people, connected to each other in real networks. Every node matters. Every connection counts. And when one piece of the circuit thrives, the whole system gets stronger.</p>
+</section>
+
+<div class="values-section">
+  <div class="values-inner">
+    <div class="section-heading">
+      <span class="eyebrow">What we believe</span>
+      <h2>Five values that guide every decision.</h2>
+    </div>
+    <div class="values-grid">
+      <div class="value-card">
+        <div class="value-num">01 / Ownership</div>
+        <h3>Workers own the work.</h3>
+        <p>Every full member is a co-owner of the cooperative — with voting rights, surplus shares, and a real stake in how things are run.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">02 / Dignity</div>
+        <h3>Real benefits, not perks.</h3>
+        <p>SSS, PhilHealth, Pag-IBIG, and HMO are not optional add-ons. They are the baseline of treating workers with dignity.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">03 / Democracy</div>
+        <h3>One person, one vote.</h3>
+        <p>Regardless of income, tenure, or capital contribution — every member has an equal voice in the cooperative's direction.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">04 / Transparency</div>
+        <h3>Open books, open decisions.</h3>
+        <p>Members can access the cooperative's financial records. No hidden margins, no opaque governance.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">05 / Quality</div>
+        <h3>Excellence as a shared standard.</h3>
+        <p>When everyone owns the outcome, everyone protects the quality. Our clients feel the difference.</p>
+      </div>
+      <div class="value-card">
+        <div class="value-num">06 / Community</div>
+        <h3>A portion always goes back.</h3>
+        <p>5% of every peso of surplus funds community development initiatives — required by law, embraced by us.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="legal-block">
+  <h3>The Legal Foundation</h3>
+  <p>Digital Circuitry is registered as a Workers' Cooperative under Republic Act No. 9520 — the Philippine Cooperative Code of 2008 — and supervised by the Cooperative Development Authority (CDA).</p>
+  <p>This legal structure grants the cooperative its own juridical personality, separate from its members. Members enjoy limited liability, democratic governance protections, and certain tax incentives unique to cooperatives under Philippine law.</p>
+  <p>Most importantly, this structure is recognized internationally as a legitimate form of business — meaning clients anywhere in the world can engage us with full confidence in our legal standing.</p>
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Digital Circuitry</h3>
+        <p>A Filipino-owned workers' cooperative connecting skilled Virtual Assistants with clients worldwide. Registered under RA 9520, the Philippine Cooperative Code of 2008.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>For You</h4>
+        <ul>
+          <li><a href="hire.html">Hire a VA</a></li>
+          <li><a href="join.html">Join as a VA</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="contact.html">Inquiry form</a></li>
+          <li><a href="mailto:hello@digitalcircuitry.coop">hello@digitalcircuitry.coop</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Digital Circuitry — A VA Collective. All rights reserved.</p>
+      <p>Nasugbu, Calabarzon · Philippines</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

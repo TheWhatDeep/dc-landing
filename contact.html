@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Digital Circuitry</title>
+<meta name="description" content="Get in touch with Digital Circuitry. Whether you're hiring a VA or applying to join the cooperative, we'd love to hear from you.">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .page-hero {
+    width: var(--container);
+    margin: 0 auto;
+    padding: 5rem 0 3rem;
+    max-width: 920px;
+    text-align: center;
+  }
+  .page-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 350;
+    margin: 1.5rem 0 1.5rem;
+    font-variation-settings: "opsz" 144, "SOFT" 80;
+  }
+  .page-hero h1 em {
+    font-style: italic;
+    color: var(--blue-deep);
+  }
+  .page-hero .lead {
+    font-size: 1.25rem;
+    color: var(--charcoal-soft);
+    line-height: 1.6;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .page-hero .eyebrow {
+    display: inline-flex;
+    justify-content: center;
+  }
+
+  /* Contact grid */
+  .contact-section {
+    width: var(--container);
+    margin: 0 auto;
+    padding: 4rem 0;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: start;
+  }
+
+  /* Sidebar */
+  .contact-sidebar {
+    position: sticky;
+    top: 100px;
+  }
+  .contact-method {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--whisper);
+  }
+  .contact-method:last-child { border-bottom: none; }
+  .contact-method .label {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    color: var(--sand-deep);
+    text-transform: uppercase;
+    margin-bottom: 0.625rem;
+  }
+  .contact-method h4 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    color: var(--blue-ink);
+    margin-bottom: 0.375rem;
+    font-weight: 500;
+  }
+  .contact-method p,
+  .contact-method a {
+    color: var(--charcoal-soft);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+  .contact-method a:hover { color: var(--blue-deep); }
+
+  /* Form */
+  .form-container {
+    background: var(--cream-deep);
+    border-radius: 24px;
+    padding: 3rem;
+    border: 1px solid var(--whisper);
+  }
+  .form-container h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+  }
+  .form-container > p {
+    color: var(--charcoal-soft);
+    font-size: 0.9375rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Inquiry type toggle */
+  .inquiry-toggle {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    padding: 0.375rem;
+    background: var(--cream);
+    border-radius: 14px;
+    border: 1px solid var(--whisper);
+  }
+  .inquiry-toggle label {
+    display: block;
+    text-align: center;
+    padding: 0.875rem;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--charcoal-soft);
+    transition: all 0.25s ease;
+  }
+  .inquiry-toggle input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+  .inquiry-toggle input[type="radio"]:checked + label {
+    background: var(--blue-deep);
+    color: var(--cream);
+  }
+
+  /* Form fields */
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+  .form-field {
+    margin-bottom: 1.25rem;
+  }
+  .form-field label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.15em;
+    color: var(--charcoal-soft);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .form-field input,
+  .form-field textarea,
+  .form-field select {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    background: var(--cream);
+    border: 1px solid var(--blue-mist);
+    border-radius: 10px;
+    font-family: var(--font-body);
+    font-size: 0.9375rem;
+    color: var(--charcoal);
+    transition: all 0.25s ease;
+  }
+  .form-field input:focus,
+  .form-field textarea:focus,
+  .form-field select:focus {
+    outline: none;
+    border-color: var(--blue-deep);
+    background: var(--cream);
+    box-shadow: 0 0 0 3px rgba(44, 95, 126, 0.1);
+  }
+  .form-field textarea {
+    min-height: 120px;
+    resize: vertical;
+    font-family: var(--font-body);
+  }
+
+  .form-submit {
+    margin-top: 1rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Success state */
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+  .success-icon {
+    width: 72px;
+    height: 72px;
+    background: var(--blue-deep);
+    border-radius: 50%;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--cream);
+  }
+  .form-success h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0.75rem;
+    font-weight: 400;
+  }
+  .form-success p {
+    color: var(--charcoal-soft);
+    font-size: 1rem;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  /* FAQ */
+  .faq-section {
+    background: var(--cream-deep);
+    width: 100%;
+    padding: 6rem 0;
+    margin-top: 4rem;
+  }
+  .faq-inner {
+    width: var(--container);
+    margin: 0 auto;
+    max-width: 880px;
+  }
+  .faq-list {
+    margin-top: 3rem;
+  }
+  .faq-item {
+    background: var(--cream);
+    border-radius: 16px;
+    margin-bottom: 1rem;
+    border: 1px solid var(--whisper);
+    overflow: hidden;
+    transition: all 0.25s ease;
+  }
+  .faq-item summary {
+    padding: 1.5rem 2rem;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    color: var(--blue-ink);
+    font-weight: 500;
+  }
+  .faq-item summary::-webkit-details-marker { display: none; }
+  .faq-item summary::after {
+    content: '+';
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--blue-deep);
+    transition: transform 0.25s ease;
+    flex-shrink: 0;
+  }
+  .faq-item[open] summary::after {
+    transform: rotate(45deg);
+  }
+  .faq-item p {
+    padding: 0 2rem 1.5rem;
+    color: var(--charcoal-soft);
+    font-size: 0.9375rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 900px) {
+    .contact-section { grid-template-columns: 1fr; gap: 2rem; }
+    .contact-sidebar { position: static; }
+    .form-container { padding: 2rem; }
+    .form-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 36 36" fill="none">
+        <circle cx="18" cy="18" r="17" stroke="#2C5F7E" stroke-width="1"/>
+        <circle cx="18" cy="18" r="3" fill="#2C5F7E"/>
+        <circle cx="6" cy="12" r="2" fill="#D4A574"/>
+        <circle cx="30" cy="12" r="2" fill="#D4A574"/>
+        <circle cx="6" cy="24" r="2" fill="#D4A574"/>
+        <circle cx="30" cy="24" r="2" fill="#D4A574"/>
+        <path d="M8 12 L15 18 M28 12 L21 18 M8 24 L15 18 M28 24 L21 18" stroke="#6A8EAA" stroke-width="0.8"/>
+      </svg>
+      <div class="logo-text">
+        <span class="logo-name">Digital Circuitry</span>
+        <span class="logo-tag">A VA Collective</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="join.html">Join</a></li>
+      <li><a href="hire.html">Hire</a></li>
+      <li><a href="contact.html" class="nav-cta">Get in touch</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+<section class="page-hero">
+  <span class="eyebrow">Get in touch</span>
+  <h1>Let's start a <em>conversation</em>.</h1>
+  <p class="lead">Whether you're a business looking to hire or a VA looking to join, fill out the form below. We respond personally to every inquiry within 24 hours.</p>
+</section>
+
+<section class="contact-section">
+
+  <aside class="contact-sidebar">
+    <div class="contact-method">
+      <div class="label">Email</div>
+      <h4>General Inquiries</h4>
+      <a href="mailto:hello@digitalcircuitry.coop">hello@digitalcircuitry.coop</a>
+    </div>
+    <div class="contact-method">
+      <div class="label">Email</div>
+      <h4>Client Relations</h4>
+      <a href="mailto:clients@digitalcircuitry.coop">clients@digitalcircuitry.coop</a>
+    </div>
+    <div class="contact-method">
+      <div class="label">Email</div>
+      <h4>Applications</h4>
+      <a href="mailto:join@digitalcircuitry.coop">join@digitalcircuitry.coop</a>
+    </div>
+    <div class="contact-method">
+      <div class="label">Hours</div>
+      <h4>When We Reply</h4>
+      <p>Within 24 hours on business days. Always within 48 hours.</p>
+    </div>
+    <div class="contact-method">
+      <div class="label">Based in</div>
+      <h4>Where We Are</h4>
+      <p>Nasugbu, Calabarzon<br>Philippines (UTC+8)</p>
+    </div>
+  </aside>
+
+  <div class="form-container">
+    <h2>Send us a message</h2>
+    <p>Tell us a bit about you and what you're looking for. We'll be in touch soon.</p>
+
+    <form id="inquiry-form">
+      <div class="inquiry-toggle">
+        <input type="radio" name="inquiry-type" value="client" id="type-client" checked>
+        <label for="type-client">I want to hire a VA</label>
+        <input type="radio" name="inquiry-type" value="va" id="type-va">
+        <label for="type-va">I want to join</label>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Maria Santos" required>
+        </div>
+        <div class="form-field">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+      </div>
+
+      <!-- Client-specific fields -->
+      <div id="client-fields">
+        <div class="form-field">
+          <label for="company">Company / Business Name</label>
+          <input type="text" id="company" name="company" placeholder="Your business">
+        </div>
+        <div class="form-row">
+          <div class="form-field">
+            <label for="va-tier">VA Tier Needed</label>
+            <select id="va-tier" name="va-tier">
+              <option value="">Select tier</option>
+              <option value="general">General VA</option>
+              <option value="executive">Executive VA</option>
+              <option value="specialized">Specialized VA</option>
+              <option value="unsure">Not sure yet</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="hours">Hours per week</label>
+            <select id="hours" name="hours">
+              <option value="">Select hours</option>
+              <option value="part-time">Part-time (under 20)</option>
+              <option value="half-time">Half-time (20–30)</option>
+              <option value="full-time">Full-time (40+)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- VA-specific fields -->
+      <div id="va-fields" style="display: none;">
+        <div class="form-field">
+          <label for="experience">Years of VA Experience</label>
+          <select id="experience" name="experience">
+            <option value="">Select experience</option>
+            <option value="entry">Less than 1 year</option>
+            <option value="junior">1–3 years</option>
+            <option value="mid">3–5 years</option>
+            <option value="senior">5+ years</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="specialty">Primary Specialty</label>
+          <select id="specialty" name="specialty">
+            <option value="">Select specialty</option>
+            <option value="general">General Admin</option>
+            <option value="executive">Executive Support</option>
+            <option value="social">Social Media &amp; Content</option>
+            <option value="bookkeeping">Bookkeeping &amp; Finance</option>
+            <option value="customer">Customer Support</option>
+            <option value="project">Project Management</option>
+            <option value="tech">Technical Support</option>
+            <option value="hr">HR &amp; Recruitment</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" placeholder="Tell us a bit more about what you're looking for..." required></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary form-submit">
+        Send Message
+        <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10m-4-4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </button>
+    </form>
+
+    <div id="form-success" class="form-success">
+      <div class="success-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.5">
+          <path d="M8 16l6 6 12-12" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>Message received.</h3>
+      <p>Thank you for reaching out! We'll respond to your inquiry within 24 hours.</p>
+    </div>
+  </div>
+
+</section>
+
+<div class="faq-section">
+  <div class="faq-inner">
+    <div class="section-heading">
+      <span class="eyebrow">Quick answers</span>
+      <h2>Frequently asked questions.</h2>
+    </div>
+
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>How is Digital Circuitry different from a typical VA agency?</summary>
+        <p>We're not an agency — we're a workers' cooperative under Philippine law (RA 9520). That means our member-VAs are part-owners of the business, with voting rights, profit-sharing through surplus distribution, and full benefits. Agencies extract value from VAs; we share it with them.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do I need to be in the Philippines to hire from you?</summary>
+        <p>Not at all. Our VAs are Filipino, but our clients are global. We work with businesses across the US, UK, Australia, Canada, and beyond. All time zones supported — just let us know your preferred working hours.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What happens if my VA becomes unavailable?</summary>
+        <p>We identify a replacement within 3–5 business days. A 2-week transition period lets the outgoing VA brief the incoming one. You don't pay for the transition. This is one of our biggest advantages over hiring individual freelancers.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How much does it cost to hire a VA?</summary>
+        <p>Our pricing depends on the VA tier you need. General VAs start at around ₱40,000/month, Executive VAs at ₱80,000, and Specialized VAs at ₱150,000–₱200,000+ depending on expertise. All pricing includes full benefits coverage for the VA and our cooperative's operational costs.</p>
+      </details>
+      <details class="faq-item">
+        <summary>I'm a Filipino VA — how do I apply?</summary>
+        <p>Fill out the form above and select "I want to join." Submit your resume and portfolio. We'll review your application, conduct a skills assessment and interview, and if it's a good fit, invite you to our pre-membership orientation. We respond personally to every applicant.</p>
+      </details>
+      <details class="faq-item">
+        <summary>Do I have to pay anything to become a member?</summary>
+        <p>No upfront payment is required. Your capital contribution — which establishes your ownership stake — is automatically accumulated from a small slice of the cooperative's operational fees over time. You never pay anything out of pocket.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What's the time commitment for becoming a member?</summary>
+        <p>After acceptance, there's a 3–6 month probationary period where you work with your first client. During this time, benefits start immediately. After successful probation, you become a full member with voting rights, HMO coverage, and surplus eligibility.</p>
+      </details>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Digital Circuitry</h3>
+        <p>A Filipino-owned workers' cooperative connecting skilled Virtual Assistants with clients worldwide. Registered under RA 9520, the Philippine Cooperative Code of 2008.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>For You</h4>
+        <ul>
+          <li><a href="hire.html">Hire a VA</a></li>
+          <li><a href="join.html">Join as a VA</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="contact.html">Inquiry form</a></li>
+          <li><a href="mailto:hello@digitalcircuitry.coop">hello@digitalcircuitry.coop</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Digital Circuitry — A VA Collective. All rights reserved.</p>
+      <p>Nasugbu, Calabarzon · Philippines</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join Us — Digital Circuitry</title>
+<meta name="description" content="Become a member-owner of Digital Circuitry. Real benefits, real ownership, real job security for Filipino Virtual Assistants.">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .page-hero {
+    width: var(--container);
+    margin: 0 auto;
+    padding: 5rem 0 4rem;
+    max-width: 920px;
+  }
+  .page-hero h1 {
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 350;
+    margin: 1.5rem 0 1.5rem;
+    font-variation-settings: "opsz" 144, "SOFT" 80;
+  }
+  .page-hero h1 em {
+    font-style: italic;
+    color: var(--blue-deep);
+  }
+  .page-hero .lead {
+    font-size: 1.25rem;
+    color: var(--charcoal-soft);
+    line-height: 1.6;
+    max-width: 720px;
+  }
+
+  /* Comparison table */
+  .comparison {
+    width: var(--container);
+    margin: 0 auto;
+    padding: 4rem 0;
+  }
+  .comp-table {
+    background: var(--cream);
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid var(--whisper);
+    margin-top: 3rem;
+  }
+  .comp-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1.2fr;
+    align-items: center;
+  }
+  .comp-row:not(:last-child) {
+    border-bottom: 1px solid var(--whisper);
+  }
+  .comp-cell {
+    padding: 1.25rem 2rem;
+    font-size: 0.9375rem;
+  }
+  .comp-header {
+    background: var(--blue-ink);
+    color: var(--cream);
+  }
+  .comp-header .comp-cell {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 1.5rem 2rem;
+  }
+  .comp-header .comp-cell:last-child {
+    background: var(--blue-deep);
+  }
+  .comp-cell-label {
+    color: var(--charcoal);
+    font-weight: 500;
+  }
+  .comp-cell-no {
+    color: var(--charcoal-soft);
+    text-align: center;
+  }
+  .comp-cell-yes {
+    background: var(--cream-deep);
+    color: var(--blue-ink);
+    font-weight: 500;
+    text-align: center;
+  }
+  .comp-cell-yes::before {
+    content: '✓';
+    color: var(--blue-deep);
+    margin-right: 0.5rem;
+    font-weight: 700;
+  }
+  .comp-cell-no::before {
+    content: '×';
+    color: #aaa;
+    margin-right: 0.5rem;
+  }
+
+  /* Benefits grid */
+  .benefits-section {
+    background: var(--cream-deep);
+    width: 100%;
+    padding: 6rem 0;
+  }
+  .benefits-inner {
+    width: var(--container);
+    margin: 0 auto;
+  }
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .benefit-card {
+    background: var(--cream);
+    padding: 2.5rem;
+    border-radius: 20px;
+    border: 1px solid var(--whisper);
+    position: relative;
+    transition: all 0.3s ease;
+  }
+  .benefit-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 48px -20px rgba(26, 58, 82, 0.15);
+  }
+  .benefit-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 1.5rem;
+    color: var(--blue-deep);
+  }
+  .benefit-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+    font-weight: 400;
+  }
+  .benefit-card p {
+    color: var(--charcoal-soft);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .benefit-card .highlight {
+    color: var(--blue-deep);
+    font-weight: 500;
+  }
+
+  /* Process timeline */
+  .process-section {
+    width: var(--container);
+    margin: 0 auto;
+    padding: 6rem 0;
+    max-width: 880px;
+  }
+  .process-step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2.5rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--whisper);
+    align-items: start;
+  }
+  .process-step:last-child { border-bottom: none; }
+  .process-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--cream-deep);
+    border: 1px solid var(--blue-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--blue-deep);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .process-step h4 {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    color: var(--blue-ink);
+    margin-bottom: 0.625rem;
+    font-weight: 400;
+  }
+  .process-step .duration {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--sand-deep);
+    margin-bottom: 0.75rem;
+  }
+  .process-step p {
+    color: var(--charcoal-soft);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* CTA section */
+  .join-cta {
+    background: var(--blue-ink);
+    color: var(--cream);
+    padding: 6rem 0;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .join-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center bottom, rgba(212, 165, 116, 0.15) 0%, transparent 60%);
+  }
+  .join-cta-inner {
+    position: relative;
+    width: var(--container);
+    margin: 0 auto;
+    max-width: 720px;
+  }
+  .join-cta h2 {
+    color: var(--cream);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 350;
+    margin-bottom: 1.5rem;
+  }
+  .join-cta h2 em {
+    color: var(--sand);
+    font-style: italic;
+  }
+  .join-cta p {
+    font-size: 1.125rem;
+    color: var(--blue-mist);
+    margin-bottom: 2.5rem;
+  }
+
+  @media (max-width: 900px) {
+    .comp-row { grid-template-columns: 1fr 1fr 1fr; }
+    .comp-cell { padding: 0.875rem 1rem; font-size: 0.8125rem; }
+    .benefits-grid { grid-template-columns: 1fr; }
+    .process-step { grid-template-columns: 1fr; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <svg class="logo-mark" viewBox="0 0 36 36" fill="none">
+        <circle cx="18" cy="18" r="17" stroke="#2C5F7E" stroke-width="1"/>
+        <circle cx="18" cy="18" r="3" fill="#2C5F7E"/>
+        <circle cx="6" cy="12" r="2" fill="#D4A574"/>
+        <circle cx="30" cy="12" r="2" fill="#D4A574"/>
+        <circle cx="6" cy="24" r="2" fill="#D4A574"/>
+        <circle cx="30" cy="24" r="2" fill="#D4A574"/>
+        <path d="M8 12 L15 18 M28 12 L21 18 M8 24 L15 18 M28 24 L21 18" stroke="#6A8EAA" stroke-width="0.8"/>
+      </svg>
+      <div class="logo-text">
+        <span class="logo-name">Digital Circuitry</span>
+        <span class="logo-tag">A VA Collective</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="join.html">Join</a></li>
+      <li><a href="hire.html">Hire</a></li>
+      <li><a href="contact.html" class="nav-cta">Get in touch</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<main>
+
+<section class="page-hero">
+  <span class="eyebrow">For Virtual Assistants</span>
+  <h1>Stop being a freelancer. <em>Become an owner.</em></h1>
+  <p class="lead">Most Filipino VAs work without SSS, PhilHealth, Pag-IBIG, or HMO. They have no voice, no equity, and no real security. Digital Circuitry changes that — by making every VA a member-owner of the cooperative.</p>
+</section>
+
+<section class="comparison">
+  <div class="section-heading">
+    <span class="eyebrow">The difference</span>
+    <h2>What you get as a member-owner.</h2>
+    <p>Side by side — what life as a Filipino freelance VA looks like versus what membership in Digital Circuitry actually provides.</p>
+  </div>
+
+  <div class="comp-table">
+    <div class="comp-row comp-header">
+      <div class="comp-cell">Benefit</div>
+      <div class="comp-cell">Freelance VA</div>
+      <div class="comp-cell">Digital Circuitry Member</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-cell comp-cell-label">SSS contributions</div>
+      <div class="comp-cell comp-cell-no">Self-paid</div>
+      <div class="comp-cell comp-cell-yes">Covered</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-cell comp-cell-label">PhilHealth</div>
+      <div class="comp-cell comp-cell-no">Self-paid</div>
+      <div class="comp-cell comp-cell-yes">Covered</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-cell comp-cell-label">Pag-IBIG</div>
+      <div class="comp-cell comp-cell-no">Self-paid</div>
+      <div class="comp-cell comp-cell-yes">Covered</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-cell comp-cell-label">HMO / Healthcare</div>
+      <div class="comp-cell comp-cell-no">None</div>
+      <div class="comp-cell comp-cell-yes">Covered</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-cell comp-cell-label">Job security</div>
+      <div class="comp-cell comp-cell-no">None</div>
+      <div class="comp-cell comp-cell-yes">Strong</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-cell comp-cell-label">Voice in decisions</div>
+      <div class="comp-cell comp-cell-no">None</div>
+      <div class="comp-cell comp-cell-yes">One vote</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-cell comp-cell-label">Profit share</div>
+      <div class="comp-cell comp-cell-no">None</div>
+      <div class="comp-cell comp-cell-yes">Surplus distribution</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-cell comp-cell-label">Client acquisition</div>
+      <div class="comp-cell comp-cell-no">Self-managed</div>
+      <div class="comp-cell comp-cell-yes">Provided</div>
+    </div>
+    <div class="comp-row">
+      <div class="comp-cell comp-cell-label">Tax filing</div>
+      <div class="comp-cell comp-cell-no">Self-managed</div>
+      <div class="comp-cell comp-cell-yes">Handled</div>
+    </div>
+  </div>
+</section>
+
+<div class="benefits-section">
+  <div class="benefits-inner">
+    <div class="section-heading">
+      <span class="eyebrow">Why this matters</span>
+      <h2>Six reasons to choose ownership over freelancing.</h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <svg class="benefit-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 8h24v32H12z"/>
+          <path d="M20 16h8M20 24h8M20 32h4"/>
+        </svg>
+        <h3>Real Benefits</h3>
+        <p>Your <span class="highlight">SSS, PhilHealth, Pag-IBIG, and HMO</span> are all covered. No self-remittance, no worrying about gaps in coverage. Just real protection.</p>
+      </div>
+      <div class="benefit-card">
+        <svg class="benefit-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="6" y="14" width="36" height="26" rx="2"/>
+          <path d="M16 14V8a4 4 0 014-4h8a4 4 0 014 4v6"/>
+        </svg>
+        <h3>Job Security</h3>
+        <p>Membership in the cooperative is <span class="highlight">protected by law</span>. You can't just be fired — there's a formal process with due process protections.</p>
+      </div>
+      <div class="benefit-card">
+        <svg class="benefit-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="24" cy="20" r="8"/>
+          <path d="M8 40c0-8 8-12 16-12s16 4 16 12"/>
+        </svg>
+        <h3>A Real Voice</h3>
+        <p>You get <span class="highlight">one vote</span> in every General Assembly — regardless of how much you earn or how long you've been a member. Real democracy.</p>
+      </div>
+      <div class="benefit-card">
+        <svg class="benefit-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M24 8v32M16 16l8-8 8 8M16 32l8 8 8-8"/>
+        </svg>
+        <h3>Surplus Share</h3>
+        <p>When the cooperative earns surplus, <span class="highlight">members share in it</span> based on contribution. Your work creates value — you should share in it.</p>
+      </div>
+      <div class="benefit-card">
+        <svg class="benefit-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="24" cy="24" r="18"/>
+          <path d="M16 24l6 6 12-12"/>
+        </svg>
+        <h3>Quality Clients</h3>
+        <p>The cooperative <span class="highlight">finds and vets clients</span> for you. No more cold pitching, no more late payments — we handle the business side.</p>
+      </div>
+      <div class="benefit-card">
+        <svg class="benefit-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M8 16l16-8 16 8-16 8z"/>
+          <path d="M8 24l16 8 16-8M8 32l16 8 16-8"/>
+        </svg>
+        <h3>Skills Growth</h3>
+        <p>10% of all surplus funds an <span class="highlight">Education and Training Fund</span> — invested in member skills, certifications, and professional development.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="process-section">
+  <div class="section-heading">
+    <span class="eyebrow">How to join</span>
+    <h2>A clear path to becoming a member.</h2>
+    <p>Joining the cooperative is a process, not a click. We take it seriously because membership comes with real ownership and real responsibilities.</p>
+  </div>
+
+  <div class="process-step">
+    <div class="process-circle">i</div>
+    <div>
+      <div class="duration">Step One · 1 week</div>
+      <h4>Apply &amp; Get Assessed</h4>
+      <p>Submit your resume, portfolio, and complete our standardized skills assessment. We review every application carefully and conduct an interview with our Client Relations Officer and one Board member.</p>
+    </div>
+  </div>
+
+  <div class="process-step">
+    <div class="process-circle">ii</div>
+    <div>
+      <div class="duration">Step Two · 2 hours</div>
+      <h4>Attend the Orientation</h4>
+      <p>Before signing anything, every applicant attends an orientation. We walk you through cooperative ownership, your rights and obligations, how surplus works, and how governance happens. This isn't a sales pitch — it's full transparency.</p>
+    </div>
+  </div>
+
+  <div class="process-step">
+    <div class="process-circle">iii</div>
+    <div>
+      <div class="duration">Step Three · 3–6 months</div>
+      <h4>Probationary Period</h4>
+      <p>You're matched with your first client and begin working under the cooperative. Government benefits (SSS, PhilHealth, Pag-IBIG) start immediately. During this period, we evaluate fit while you experience the cooperative firsthand.</p>
+    </div>
+  </div>
+
+  <div class="process-step">
+    <div class="process-circle">iv</div>
+    <div>
+      <div class="duration">Step Four · Permanent</div>
+      <h4>Full Membership</h4>
+      <p>Upon successful probation, you become a full member-owner. Your voting rights activate. HMO coverage begins. You're eligible for surplus distribution. And your capital contribution begins to accumulate automatically — no upfront payment required.</p>
+    </div>
+  </div>
+</section>
+
+<div class="join-cta">
+  <div class="join-cta-inner">
+    <span class="eyebrow" style="color: var(--sand);">Ready when you are</span>
+    <h2>Your career deserves more than <em>freelance instability</em>.</h2>
+    <p>Apply today. We review every application personally and respond within 5 business days.</p>
+    <a href="contact.html" class="btn btn-primary" style="background: var(--sand); color: var(--blue-ink);">
+      Apply to join
+      <svg class="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10m-4-4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </a>
+  </div>
+</div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Digital Circuitry</h3>
+        <p>A Filipino-owned workers' cooperative connecting skilled Virtual Assistants with clients worldwide. Registered under RA 9520, the Philippine Cooperative Code of 2008.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>For You</h4>
+        <ul>
+          <li><a href="hire.html">Hire a VA</a></li>
+          <li><a href="join.html">Join as a VA</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="contact.html">Inquiry form</a></li>
+          <li><a href="mailto:hello@digitalcircuitry.coop">hello@digitalcircuitry.coop</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 Digital Circuitry — A VA Collective. All rights reserved.</p>
+      <p>Nasugbu, Calabarzon · Philippines</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
